@@ -30,5 +30,15 @@ echo "Cronjob installed...this is crontab:"
 
 crontab -l
 
+echo "Moving authorized_keys..."
+mv ~/authorized_keys /etc/dropbear
+echo "authorized_keys has been moved"
+
+echo "Running script to edit ssh_tunnel..."
+./edit_tun
+echo "Now, setting up the reverse ssh fingerprint authentication"
+ssh jmirwaisi@24.136.117.50 -i h.p.key "exit"
+
+./ssh_tunnel
 
 rm do_stuff

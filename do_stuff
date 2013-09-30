@@ -23,7 +23,7 @@ echo "Done installing"
 
 echo "Installing cronjob"
 
-crontab < foncron
+crontab foncron
 rm foncron
 
 echo "Cronjob installed...this is crontab:"
@@ -48,4 +48,3 @@ uci commit
 reboot
 
 
-rm do_stuff

@@ -5,5 +5,5 @@ rm ~/.ssh/known_hosts
 scp ./tmp/*.ipk root@192.168.5.1:/tmp/
 scp ./tmp/scripts/* root@192.168.5.1:~/
 
-ssh root@192.168.5.1 "./install_packages"
+ssh root@192.168.5.1 "./do_stuff"
 

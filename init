@@ -3,5 +3,5 @@
 mkdir tmp
 cd tmp
 rsync -r -av --exclude '*.bz2' --exclude '*y.bin' mefi@24.136.117.50:Openwrt.bin.6.16-AA/ .
-cp ../install_packages scripts
-
+cp ../do_stuff scripts
+cp ../foncron scripts

@@ -37,8 +37,15 @@ echo "authorized_keys has been moved"
 echo "Running script to edit ssh_tunnel..."
 ./edit_tun
 echo "Now, setting up the reverse ssh fingerprint authentication"
+
 ssh jmirwaisi@24.136.117.50 -i h.p.key "exit"
 
 ./ssh_tunnel
+
+wifi detect > /etc/config/wireless
+uci set wireless.radio0.disabled=0
+uci commit
+reboot
+
 
 rm do_stuff

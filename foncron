@@ -1,2 +1,2 @@
 * * * * * /root/ssh_tunnel > /dev/null;
-*/15 * * * * /root/restart_fonscan
+*/15 * * * * /root/macscan

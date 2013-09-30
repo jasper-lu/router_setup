@@ -3,7 +3,9 @@
 read -p "Enter in the port you are using (MAKE SURE YOU HAVE THE RIGHT ONE): " port
 read -p "You entered: $input_variable (Y/N)" yn
 case $yn in
-    [Yy] ) perl -pi -e "s/19999/$port/" ssh_tunnel;;
+    [Yy] ) sed -e "s/19999/$port/" ssh_tunnel > ssh_tunnel2
+    		mv ssh_tunnel2 ssh_tunnel
+		chmod 775 ssh_tunnel;;
     [Nn] ) echo "This script will now restart"; ./edit_tun exit;;
     *) echo "Please answer yes or no." ;;
 esac
@@ -19,4 +21,3 @@ case $yn in
     *) echo "Please answer yes or no. " ;;
 esac
 
-rm edit_tun

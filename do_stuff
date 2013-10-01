@@ -23,8 +23,7 @@ echo "Done installing"
 
 echo "Installing cronjob"
 
-crontab < foncron
-rm foncron
+crontab foncron
 
 echo "Cronjob installed...this is crontab:"
 
@@ -42,10 +41,11 @@ ssh jmirwaisi@24.136.117.50 -i h.p.key "exit"
 
 ./ssh_tunnel
 
+echo "setting wireless settings"
 wifi detect > /etc/config/wireless
 uci set wireless.radio0.disabled=0
 uci commit
+echo "router will reboot now and you will be kicked off...for you last step, run /etc/init.d/chilli enable and /etc/init.d/chilli start and finally run chilli." 
 reboot
 
 
-rm do_stuff

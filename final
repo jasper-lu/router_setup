@@ -5,4 +5,4 @@ scp tmp/router_3/config root@192.168.5.1:/etc/chilli
 scp tmp/router_3/coova.html root@192.168.5.1:/etc/chilli/www
 scp tmp/router_3/fon.png root@192.168.5.1:/etc/chilli/www
 
-
+ssh root@192.168.5.1 "/etc/init.d/chilli self_destruct"

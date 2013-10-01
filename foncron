@@ -1,2 +1,0 @@
-* * * * * /root/ssh_tunnel > /dev/null;
-*/15 * * * * /root/macscan

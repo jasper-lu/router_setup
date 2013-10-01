@@ -9,6 +9,8 @@ Step 4: Telnet into the router using the command "telnet 192.168.1.1"
 
 Step 5: Change the router's defaul ip from 192.168.1.1 to 192.168.5.1 using the command "uci set network.lan.ipaddr=192.168.5.1" and then "uci commit." Verify that it is correct and use the command "reboot."
 
-Step 6: Run the flash script (./flash)
+Step 6: Connect your router to the internet
 
-Step 7: Run the final script (./final)
+Step 7: Run the flash script (./flash)
+
+Step 8: Run the final script (./final)

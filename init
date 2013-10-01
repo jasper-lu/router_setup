@@ -2,6 +2,13 @@
 
 mkdir tmp
 cd tmp
-rsync -r -av --exclude '*.bz2' --exclude '*s.bin' mefi@24.136.117.50:Openwrt.bin.6.16-AA/ .
-cp ../do_stuff scripts
-cp ../foncron scripts
+
+echo "enter in the password for mefi@24.136.117.50:"
+
+rsync -r -av --exclude '*.bz2' --exclude '*ade.bin' mefi@24.136.117.50:Openwrt.bin.6.16-AA/ .
+
+echo "copying route to scripts folder"
+
+cp ~/router_setup/route/* ~/router_setup/tmp/scripts
+
+echo "Now disconnect your internet and flash the router with the Openwrt firmware"

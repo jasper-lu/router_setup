@@ -8,4 +8,4 @@ scp tmp/router_3/coova.html root@192.168.5.1:/etc/chilli/www
 scp tmp/router_3/fon.png root@192.168.5.1:/etc/chilli/www
 
 echo "Starting chilli and running self-destruct script..."
-ssh root@192.168.5.1 "cd /etc/init.d; ./chilli enable; ./chilli start; chilli; ./self_destruct"
+ssh root@192.168.5.1 "cd /etc/init.d; ./chilli enable; ./chilli start; chilli; ~/self_destruct"

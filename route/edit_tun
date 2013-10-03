@@ -1,24 +1,17 @@
 #!/bin/sh
 
-read -p "Enter in the port you are using (MAKE SURE YOU HAVE THE RIGHT ONE): " port
-read -p "You entered: $input_variable (Y/N)" yn
-case $yn in
-    [Yy] ) sed -e "s/19999/$port/" ssh_tunnel > ssh_tunnel2
+port = `~/portnumb`
+sed -e "s/19999/$port/" ssh_tunnel > ssh_tunnel2
 	mv ssh_tunnel2 ssh_tunnel
-	chmod 775 ssh_tunnel;;
-    [Nn] ) echo "This script will now restart"; ./edit_tun exit;;
-    *) echo "Please answer yes or no." ;;
-esac
+	chmod 775 ssh_tunnel
 
 echo "the ssh tunnel code has been changed. This is the code:"
 cat ssh_tunnel
 
-read -p "Is it correct? (Y/N)"
+read -p "Is it correct? (Y/N)" yn
 
 case $yn in
     [Yy] ) echo "Moving on to the next step..." ;;
     [Nn] ) echo "Please correct any mistakes"; vi ssh_tunnel ;;
     *) echo "Please answer yes or no. " ;;
 esac
-
-rm edit_tun

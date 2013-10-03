@@ -4,7 +4,16 @@ rm ~/.ssh/known_hosts
 
 scp ./tmp/*.ipk root@192.168.5.1:/tmp/
 scp ./tmp/scripts/* root@192.168.5.1:~/
+
+read -p "Enter in the port you are using (MAKE SURE YOU HAVE THE RIGHT ONE): " port
+read -p "You entered: $port (Y/N)" yn
+
+echo "$port" > portnumb
+mv portnumb route
+
 scp ./route/* root@192.168.5.1:~/
+
 
 ssh root@192.168.5.1 "./do_stuff"
 
+rm route/portnumb

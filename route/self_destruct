@@ -3,6 +3,5 @@
 rm router_setup
 rm install_packages
 rm do_stuff
-rm edit_tun
 rm foncron
 rm self_destruct

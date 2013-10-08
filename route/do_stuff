@@ -44,9 +44,5 @@ ssh jmirwaisi@24.136.117.50 -i h.p.key "exit"
 
 ./ssh_tunnel
 
-wifi detect > /etc/config/wireless
-uci set wireless.radio0.disabled=0
-uci commit
-reboot
 
 

@@ -1,8 +1,7 @@
 #!/bin/sh
 
-rm ~/router_setup
 rm ~/install_packages
 rm ~/do_stuff
 rm ~/foncron
+rm ~/edit_tun
 rm ~/self_destruct
-rm ~/portnumb

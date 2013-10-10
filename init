@@ -10,6 +10,6 @@ rsync -r -av --exclude '*.bz2' --exclude '*ade.bin' mefi@24.136.117.50:Openwrt.b
 echo "copying route to scripts folder"
 cp ~/router_setup/route/* ~/router_setup/tmp/scripts
 echo " getting mefi key"
-mv ~/router_setup/tmp/etc/mefi.key ./
+mv ~/router_setup/tmp/mefi.key ./
 
 echo "Now disconnect your internet and flash the router with the Openwrt firmware"

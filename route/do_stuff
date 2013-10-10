@@ -29,10 +29,6 @@ echo "Cronjob installed...this is crontab:"
 
 crontab -l
 
-echo "Moving authorized_keys..."
-mv ~/authorized_keys /etc/dropbear
-echo "authorized_keys has been moved"
-
 echo "Running script to edit ssh_tunnel..."
 
 #edit tunnel stuff

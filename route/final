@@ -1,11 +1,10 @@
 #!/bin/sh
 
+
 cd /etc/init.d 
 ./chilli enable 
 ./chilli start
 chilli
-echo "Your Mac address is: "
-~/rid
 ~/self_destruct
 
 

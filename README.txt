@@ -13,7 +13,7 @@ Step 6: Connect your router to the internet
 
 Step 7: Run the flash script (./flash)
 
-Step 8: Run the final script (./final)
+Step 8: Check to see everything is okay.
 
 Future Steps:
 - Automate the router firmware stuff with a python or whatever script??? (Is this even possible)

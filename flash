@@ -1,12 +1,12 @@
 #!/bin/sh
 
 rm ~/.ssh/known_hosts
-
-scp -i mefi.key ./tmp/*.ipk root@192.168.5.1:/tmp/
+echo "Setting up the authorized keys"
 scp -i mefi.key ./tmp/scripts/* root@192.168.5.1:~/
-
-
-
+echo "Moving authorized_keys..."
+ssh root@192.168.5.1 "mv ~/authorized_keys /etc/dropbear"
+echo "Done! Now sit back and relax" 
+scp -i mefi.key ./tmp/*.ipk root@192.168.5.1:/tmp/
 
 
 ssh -i mefi.key root@192.168.5.1 "./do_stuff"
@@ -24,6 +24,10 @@ ssh -i mefi.key root@192.168.5.1 "~/final"
 
 
 echo "The last step. After this, the router will reboot. Wait and check if everything works."
+echo "Your MAC address is: "
+ssh -i mefi.key root@192.168.5.1 "
+~/rid;
+"
 ssh -i mefi.key root@192.168.5.1 "
 rm ~/final;
 wifi detect > /etc/config/wireless;
@@ -31,3 +35,5 @@ uci set wireless.radio0.disabled=0;
 uci commit;
 reboot;
 "
+
+

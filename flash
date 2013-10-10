@@ -2,29 +2,29 @@
 
 rm ~/.ssh/known_hosts
 
-scp ./tmp/*.ipk root@192.168.5.1:/tmp/
-scp ./tmp/scripts/* root@192.168.5.1:~/
+scp -i mefi.key ./tmp/*.ipk root@192.168.5.1:/tmp/
+scp -i mefi.key ./tmp/scripts/* root@192.168.5.1:~/
 
 
 
 
 
-ssh root@192.168.5.1 "./do_stuff"
+ssh -i mefi.key root@192.168.5.1 "./do_stuff"
 
 echo "The following 4 password prompts are to move chilli files" 
-scp tmp/router_3/chilli root@192.168.5.1:/etc/init.d/
-scp tmp/router_3/config root@192.168.5.1:/etc/chilli
-scp tmp/router_3/coova.html root@192.168.5.1:/etc/chilli/www
-scp tmp/router_3/fon.png root@192.168.5.1:/etc/chilli/www
+scp -i mefi.key tmp/router_3/chilli root@192.168.5.1:/etc/init.d/
+scp -i mefi.key tmp/router_3/config root@192.168.5.1:/etc/chilli
+scp -i mefi.key tmp/router_3/coova.html root@192.168.5.1:/etc/chilli/www
+scp -i mefi.key tmp/router_3/fon.png root@192.168.5.1:/etc/chilli/www
 
 echo "Starting chilli and running self-destruct script..."
 
-ssh root@192.168.5.1 "~/final"
+ssh -i mefi.key root@192.168.5.1 "~/final"
 
 
 
 echo "The last step. After this, the router will reboot. Wait and check if everything works."
-ssh root@192.168.5.1 "
+ssh -i mefi.key root@192.168.5.1 "
 rm ~/final;
 wifi detect > /etc/config/wireless;
 uci set wireless.radio0.disabled=0;

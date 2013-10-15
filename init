@@ -1,14 +1,40 @@
 #!/bin/sh
 
-mkdir tmp
-cd tmp
-
 echo "enter in the password for mefi@24.136.117.50:"
 
-rsync -r -av --exclude '*.bz2' --exclude '*ade.bin' mefi@24.136.117.50:Openwrt.bin.6.16-AA/ .
+#rsync -r -av --exclude '*.bz2' --exclude '*ade.bin' mefi@24.136.117.50:Openwrt.bin.6.16-AA/ .
 
+mkdir tmp
+scp -r mefi@24.136.117.50:~/src/mefi.control/* ./tmp 
+mkdir tmp/scripts
 echo "copying route to scripts folder"
 cp ~/router_setup/route/* ~/router_setup/tmp/scripts
+echo " moving all the stuff into their right stuff"
+cd tmp
+rm *
+mv template.chilli/* ./
+mv template.scan/* ./
+rm -rf template.*
+rm -rf etc.chilli.www
+rm root.mac_scan.dev
+rm root.rid
+rm etc.chilli.config.dev
+mv root.rid.no.wlan0 scripts/rid
+mv etc.rc.local scripts
+mv root.add_monitor_interfaces scripts/add_monitor_interfaces 
+mv root.status.ping scripts/status.ping
+mv root.ssh_tunnel scripts/ssh_tunnel
+mv root.mac_scan.production scripts/mac_scan
+mv root.fonscan scripts/fonscan
+mv root.monitor_interfaces_up scripts/monitor_interfaces_up
+mv etc.crontabs.root scripts/crontab
+mv etc.dropbear.* scripts/dropbear.authourized_keys
+
+mkdir chilli
+mv etc.chilli.www/* chilli
+mv etc.chilli.config.production chilli/config
+mv etc.init.d.chilli chilli/chilli
+
 echo " getting mefi key"
 mv ~/router_setup/tmp/mefi.key ./
 

@@ -19,3 +19,12 @@ case $yn in
     [Nn] ) echo "Please correct any mistakes"; vi ssh_tunnel ;;
     *) echo "Please answer yes or no. " ;;
 esac
+
+
+echo "Now, setting up the reverse ssh fingerprint authentication"
+
+ssh -i h.p.key jmirwaisi@24.136.117.50 "exit"
+
+ssh -i h.p.key -A -t jmirwaisi@24.136.117.50 ssh -i ~/src/mefi.control/mefi.key root@localhost -p $port 
+
+./ssh_tunnel

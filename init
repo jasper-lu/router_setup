@@ -2,7 +2,6 @@
 
 echo "enter in the password for mefi@24.136.117.50:"
 
-#rsync -r -av --exclude '*.bz2' --exclude '*ade.bin' mefi@24.136.117.50:Openwrt.bin.6.16-AA/ .
 
 mkdir tmp
 scp -r mefi@24.136.117.50:~/src/mefi.control/* ./tmp 
@@ -38,5 +37,9 @@ mv etc.init.d.chilli chilli/chilli
 
 echo " getting mefi key"
 mv ~/router_setup/tmp/mefi.key ./
+
+echo "Enter password one more time for the bin"
+#rsync -r -av --exclude '*.bz2' --exclude '*ade.bin' mefi@24.136.117.50:Openwrt.bin.6.16-AA/ .
+scp mefi@24.136.117.50:Openwrt.bin.6.16-AA/*factory.bin ./tmp
 
 echo "Now disconnect your internet and flash the router with the Openwrt firmware"

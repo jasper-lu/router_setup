@@ -11,6 +11,7 @@ echo "copying route to scripts folder"
 cp ~/router_setup/route/* ~/router_setup/tmp/scripts
 echo " moving all the stuff into their right stuff"
 cd tmp
+mv mefi.key ..
 rm *
 mv template.chilli/* ./
 mv template.scan/* ./

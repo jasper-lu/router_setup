@@ -23,7 +23,7 @@ echo "Done installing"
 
 echo "Installing cronjob"
 
-crontab foncron
+crontab crontab
 
 echo "Cronjob installed...this is crontab:"
 

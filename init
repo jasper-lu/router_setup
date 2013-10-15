@@ -15,12 +15,11 @@ rm *
 mv template.chilli/* ./
 mv template.scan/* ./
 rm -rf template.*
-rm -rf etc.chilli.www
 rm root.mac_scan.dev
 rm root.rid
 rm etc.chilli.config.dev
 mv root.rid.no.wlan0 scripts/rid
-mv etc.rc.local scripts
+mv etc.rc.local scripts/rc.local
 mv root.add_monitor_interfaces scripts/add_monitor_interfaces 
 mv root.status.ping scripts/status.ping
 mv root.ssh_tunnel scripts/ssh_tunnel
@@ -28,12 +27,14 @@ mv root.mac_scan.production scripts/mac_scan
 mv root.fonscan scripts/fonscan
 mv root.monitor_interfaces_up scripts/monitor_interfaces_up
 mv etc.crontabs.root scripts/crontab
-mv etc.dropbear.* scripts/dropbear.authourized_keys
+mv etc.dropbear.* scripts/authorized_keys
 
 mkdir chilli
 mv etc.chilli.www/* chilli
 mv etc.chilli.config.production chilli/config
 mv etc.init.d.chilli chilli/chilli
+
+rm -rf etc.chilli.www
 
 echo " getting mefi key"
 mv ~/router_setup/tmp/mefi.key ./

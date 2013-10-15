@@ -34,11 +34,7 @@ echo "Running script to edit ssh_tunnel..."
 #edit tunnel stuff
 ./edit_tun
 #edit tunnel stuff
-echo "Now, setting up the reverse ssh fingerprint authentication"
 
-ssh jmirwaisi@24.136.117.50 -i h.p.key "exit"
-
-./ssh_tunnel
 
 
 

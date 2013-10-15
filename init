@@ -40,6 +40,6 @@ mv ~/router_setup/tmp/mefi.key ./
 
 echo "Enter password one more time for the bin"
 #rsync -r -av --exclude '*.bz2' --exclude '*ade.bin' mefi@24.136.117.50:Openwrt.bin.6.16-AA/ .
-scp mefi@24.136.117.50:Openwrt.bin.6.16-AA/*factory.bin ./tmp
+scp mefi@24.136.117.50:Openwrt.bin.6.16-AA/*factory.bin ./ 
 
 echo "Now disconnect your internet and flash the router with the Openwrt firmware"

@@ -26,7 +26,7 @@ echo "Your MAC address is: "
 ssh -i mefi.key root@192.168.5.1 "
 ~/rid;
 "
-ssh -i mefi.key root@192.168.5.1 "
+ssh -q -o 'BatchMode=yes' -i mefi.key root@192.168.5.1 "
 rm ~/final;
 echo 'disabling ssid';
 uci set wireless.@wifi-iface[0].ssid='';

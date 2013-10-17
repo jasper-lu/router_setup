@@ -10,14 +10,18 @@ echo "copying route to scripts folder"
 cp ~/router_setup/route/* ~/router_setup/tmp/scripts
 echo " moving all the stuff into their right stuff"
 cd tmp
+#first moves
 mv mefi.key ..
+#delete unecessary shit (all the control files)
 rm *
 mv template.chilli/* ./
+ls
 mv template.scan/* ./
 rm -rf template.*
 rm root.mac_scan.dev
 rm root.rid
 rm etc.chilli.config.dev
+#move and rename everything important
 mv root.rid.no.wlan0 scripts/rid
 mv etc.rc.local scripts/rc.local
 mv root.add_monitor_interfaces scripts/add_monitor_interfaces 

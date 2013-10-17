@@ -30,7 +30,7 @@ ssh -q -o 'BatchMode=yes' -i mefi.key root@192.168.5.1 "
 rm ~/final;
 echo 'disabling ssid';
 uci set wireless.@wifi-iface[0].ssid='';
-uci set wireless.@wifi-iface[0].mod='';
+uci set wireless.@wifi-iface[0].mode='';
 wifi detect > /etc/config/wireless;
 uci commit;
 reboot;

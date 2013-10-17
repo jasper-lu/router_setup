@@ -32,7 +32,6 @@ echo 'disabling ssid';
 uci set wireless.@wifi-iface[0].ssid='';
 uci set wireless.@wifi-iface[0].mod='';
 wifi detect > /etc/config/wireless;
-uci set wireless.radio0.disabled=0;
 uci commit;
 reboot;
 " 

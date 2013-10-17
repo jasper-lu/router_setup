@@ -1,7 +1,6 @@
 #!/bin/sh
 
-rm ~/install_packages
 rm ~/do_stuff
-rm ~/foncron
 rm ~/edit_tun
 rm ~/self_destruct
+rm ~/crontab

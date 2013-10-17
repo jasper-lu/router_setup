@@ -15,7 +15,6 @@ rm *
 mv template.chilli/* ./
 mv template.scan/* ./
 rm -rf template.*
-rm -rf etc.chilli.www
 rm root.mac_scan.dev
 rm root.rid
 rm etc.chilli.config.dev
@@ -32,6 +31,7 @@ mv etc.dropbear.* scripts/authorized_keys
 
 mkdir chilli
 mv etc.chilli.www/* chilli
+rm -rf etc.chilli.www
 mv etc.chilli.config.production chilli/config
 mv etc.init.d.chilli chilli/chilli
 

@@ -1,20 +1,13 @@
 Step 1: Run init if you don't already have all of the necessary files. If it has been a while since you last copied over the files, run init anyway.
 
-Step 2: Turn off your wireless
-
-Step 3: Flash the router with the OpenWrt firmware (ends in factory.bin)
+Step 2: Flash the router with the OpenWrt firmware (ends in factory.bin)
 at 192.168.0.1
 
-Step 4: Telnet into the router using the command "telnet 192.168.1.1" 
+Step 3: Run the telnet script (./telnet)
 
-Step 5: Change the router's defaul ip from 192.168.1.1 to 192.168.5.1 using the command "uci set network.lan.ipaddr=192.168.5.1" and then "uci commit." Verify that it is correct and use the command "reboot."
+Step 4: Run the flash script (./flash)
 
-Step 6: Connect your router to the internet
-
-Step 7: Run the flash script (./flash)
-
-Step 8: Check to see everything is okay.
+Step 5: Check to see everything is okay.
 
 Future Steps:
 - Automate the router firmware stuff with a python or whatever script??? (Is this even possible)
-- Automate the telnetting

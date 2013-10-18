@@ -1,0 +1,5 @@
+#!/usr/bin/expect
+
+spawn telnet 192.168.1.1
+send "uci set wireless.@wifi-iface\\\[0\\].ssid=''\r"
+expect eof

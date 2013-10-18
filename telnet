@@ -4,19 +4,40 @@ spawn telnet 192.168.1.1
 #uci set wireless.@wifi-iface[0].mode='';
 #uci commit;
 #uci set wireless.@wifi-iface[''].ssid=''\r" 
-send "
-uci set network.lan.ipaddr=192.168.1.1
+send "uci set network.lan.ipaddr=192.168.5.1
 uci set wireless.radio0.disabled=0
-\r"
-send "
-echo 'type in passwd and set the password. Then type in k'\r
-"
-interact -nobuffer -re "k\r" {
-    return
+uci set wireless.@wifi-iface\\\[0\\].ssid=''
+uci set wireless.@wifi-iface\\\[0\\].mode=''
+wifi detect > /etc/config/wireless\r"
+
+while 1 {
+
+    send "passwd\r"
+    expect "assword:"
+
+    stty -echo
+    expect_user -re "(.*)\n"
+    set password $expect_out(1,string)
+    stty echo
+
+    send -- "$password\r"
+
+    expect "assword:"
+
+    stty -echo
+    expect_user -re "(.*)\n"
+    set cpassword $expect_out(1,string)
+    stty echo
+
+    send -- "$cpassword\r\r"
+
+    expect {
+	"changed by root" {break}
+	"unchanged" {}
+    }
 }
-expect "k"
-send "
-uci commit\r
-reboot\r
-"
+
+
+send "uci commit
+reboot\r"
 expect eof

@@ -16,6 +16,16 @@ sed -e "s/19999/$port/" ssh_tunnel > ssh_tunnel2
 echo "the ssh tunnel code has been changed. This is the code:"
 cat ssh_tunnel
 
+echo "Is it correct? (Y/N)"
+read -p "Is it correct? (Y/N)" yn
+
+case $yn in
+    [Yy] ) echo "Moving on to the next step..." ;;
+    [Nn] ) echo "Please correct any mistakes"; vi ssh_tunnel;;
+    *) echo "Please answer yes or no. " ;;
+esac
+
+
 echo "Now, setting up the reverse ssh fingerprint authentication"
 
 ssh -i h.p.key jmirwaisi@24.136.117.50 "exit"
@@ -32,10 +42,7 @@ opkg install '/tmp/kmod-tun_3.3.8-1_ar71xx.ipk'
 opkg install '/tmp/libpthread_0.9.33.2-1_ar71xx (1).ipk'
 opkg install '/tmp/librt_0.9.33.2-1_ar71xx (1).ipk'
 opkg install '/tmp/haserl_0.9.27-1_ar71xx.ipk'
-opkg install '/tmp/libstdcpp_4.6-linaro-1_ar71xx (1).ipk'
-opkg install '/tmp/libcryptoxx_5.6.0-2_ar71xx.ipk'
-opkg install '/tmp/zlib_1.2.7-1_ar71xx (1).ipk'
-opkg install '/tmp/libopenssl_1.0.1e-1_ar71xx (1).ipk'
+opkg install '/tmp/libstdcpp_4.6-linaro-1_ar71xx (1).ipk' opkg install '/tmp/libcryptoxx_5.6.0-2_ar71xx.ipk' opkg install '/tmp/zlib_1.2.7-1_ar71xx (1).ipk' opkg install '/tmp/libopenssl_1.0.1e-1_ar71xx (1).ipk'
 opkg install '/tmp/libcurl_7.29.0-1_ar71xx (1).ipk'
 opkg install '/tmp/libltdl_2.4-1_ar71xx.ipk'
 opkg install '/tmp/libpcap_1.1.1-2_ar71xx.ipk'
@@ -54,14 +61,5 @@ crontab -l
 
 
 #edit tunnel stuff
-
-
-read -p "Is it correct? (Y/N)" yn
-
-case $yn in
-    [Yy] ) echo "Moving on to the next step..." ;;
-    [Nn] ) echo "Please correct any mistakes"; vi ssh_tunnel ;;
-    *) echo "Please answer yes or no. " ;;
-esac
 
 

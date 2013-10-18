@@ -1,3 +1,5 @@
 #!/usr/bin/expect
 
 send "./telnet"
+expect "step"
+#start next

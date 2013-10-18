@@ -58,8 +58,3 @@ crontab crontab
 echo "Cronjob installed...this is crontab:"
 
 crontab -l
-
-
-#edit tunnel stuff
-
-

@@ -2,6 +2,7 @@
 
 echo "enter in the password for mefi@24.136.117.50:"
 
+rm -rf tmp
 
 mkdir tmp
 scp -r mefi@24.136.117.50:~/src/mefi.control/* ./tmp 

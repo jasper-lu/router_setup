@@ -1,0 +1,30 @@
+#!/bin/sh
+
+rm ~/.ssh/known_hosts
+echo "Setting up the authorized keys"
+scp -i mefi.key ./tmp/scripts/* root@192.168.5.1:~/
+echo "Moving authorized_keys..."
+ssh root@192.168.5.1 "mv ~/authorized_keys /etc/dropbear"
+echo "Done! Now sit back and relax" 
+scp -i mefi.key ./tmp/packages/*.ipk root@192.168.5.1:/tmp/
+
+
+ssh -i mefi.key root@192.168.5.1 "./do_stuff $1"
+
+echo "The following 4 password prompts are to move chilli files" 
+scp -i mefi.key tmp/chilli/chilli root@192.168.5.1:/etc/init.d/
+scp -i mefi.key tmp/chilli/config root@192.168.5.1:/etc/chilli
+scp -i mefi.key tmp/chilli/coova.html root@192.168.5.1:/etc/chilli/www
+scp -i mefi.key tmp/chilli/fon.png root@192.168.5.1:/etc/chilli/www
+
+echo "Starting chilli and running self-destruct script..."
+
+ssh -i mefi.key root@192.168.5.1 "~/final"
+
+echo "The last step. After this, the router will reboot. Wait and check if everything works."
+echo "Your MAC address is: "
+ssh -i mefi.key root@192.168.5.1 "
+~/rid;
+rm ~/final;
+"
+echo "Alright, now test if the router is working and you're done!"

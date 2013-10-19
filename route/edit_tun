@@ -1,25 +1,13 @@
 #!/bin/sh
 
-echo "Enter in the port you are using (MAKE SURE YOU HAVE THE RIGHT ONE): "
-read -p: port
-echo "You entered: $port (Y/N) " :
-read -p "You entered: $port (Y/N)" yn
-
-sed -e "s/19999/$port/" ssh_tunnel > ssh_tunnel2
+echo "SSH success"
+mv rc.local /etc/
+sed -e "s/19999/$1/" ssh_tunnel > ssh_tunnel2
 	mv ssh_tunnel2 ssh_tunnel
 	chmod 775 ssh_tunnel
 
 echo "the ssh tunnel code has been changed. This is the code:"
 cat ssh_tunnel
-
-read -p "Is it correct? (Y/N)" yn
-
-case $yn in
-    [Yy] ) echo "Moving on to the next step..." ;;
-    [Nn] ) echo "Please correct any mistakes"; vi ssh_tunnel ;;
-    *) echo "Please answer yes or no. " ;;
-esac
-
 
 echo "Now, setting up the reverse ssh fingerprint authentication"
 
@@ -28,3 +16,4 @@ ssh -i h.p.key jmirwaisi@24.136.117.50 "exit"
 #ssh -i h.p.key -A -t jmirwaisi@24.136.117.50 ssh -i ~/src/mefi.control/mefi.key root@localhost -p $port 
 
 ./ssh_tunnel
+

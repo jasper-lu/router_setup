@@ -1,9 +1,65 @@
 #!/usr/bin/expect
-set password "fonfonfon"
+
+set password "temp" 
+spawn telnet 192.168.1.1
+
+#uci set wireless.@wifi-iface[0].mode='';
+#uci commit;
+#uci set wireless.@wifi-iface[''].ssid=''\r" 
+send "uci set network.lan.ipaddr=192.168.5.1
+uci set wireless.radio0.disabled=0
+uci set wireless.@wifi-iface\\\[0\\].ssid=''
+uci set wireless.@wifi-iface\\\[0\\].mode=''
+wifi detect > /etc/config/wireless\r"
+
+while 1 {
+
+    send "passwd\r"
+    expect "assword:"
+
+    stty -echo
+    expect_user -re "(.*)\n"
+    set password $expect_out(1,string)
+    stty echo
+
+    send -- "$password\r"
+
+    expect "assword:"
+
+    stty -echo
+    expect_user -re "(.*)\n"
+    set cpassword $expect_out(1,string)
+    stty echo
+
+    send -- "$cpassword\r\r"
+
+    expect {
+	"changed by root" {break}
+	"unchanged" {}
+    }
+}
+
+
+send "uci commit
+reboot
+exit\r"
+
+send_user "next step"
+expect eof
 send_user "What port number are you using?
 \r"
 expect_user -re "(.*)\n"
 set port $expect_out(1,string)
+
+while 1 {
+spawn ssh root@192.168.5.1
+    expect {
+	"no)?" {send "yes\r"; send \003; break}
+	"refused" {}
+	"unreachable" {}
+	":" {send \003; break}	
+    }
+}
 
 spawn ./pieces/config $port
 while 1 {
@@ -18,8 +74,11 @@ while 1 {
 	"done!" {
 	    break;
 	}
+	"(y/n)" {
+	    send -- "y\r"
+	}
     }
 }
-#while loop until laptop reboots and canenter.
-#yes when prompted, no when not
-#start next
+
+send_user "Your port number: $port"
+send_user "Your password: $password"

@@ -26,5 +26,6 @@ echo "Your MAC address is: "
 ssh -i mefi.key root@192.168.5.1 "
 ~/rid;
 rm ~/final;
+reboot
 "
 echo "Alright, now test if the router is working and you're done!"

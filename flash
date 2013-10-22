@@ -1,17 +1,25 @@
 #!/usr/bin/expect
-spawn "./pieces/telnet"
-send_user "What port number are you using?"
-stty -echo
+set password "fonfonfon"
+send_user "What port number are you using?
+\r"
 expect_user -re "(.*)\n"
 set port $expect_out(1,string)
-stty echo
 
-expect "step"
+spawn ./pieces/config $port
+while 1 {
+    expect {
+	"word:" {
+	    send -- $password
+	    send -- "\r"
+	}
+	"no)?" {
+	    send "yes\r"
+	}	
+	"done!" {
+	    break;
+	}
+    }
+}
 #while loop until laptop reboots and canenter.
 #yes when prompted, no when not
-spawn "./pieces/config $port"
-
-expect ":"
-send "yes"
-
 #start next

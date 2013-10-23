@@ -2,7 +2,7 @@
 
 echo "SSH success"
 mv rc.local /etc/
-mv ~/known_hosts ~/.ssh
+mv ~/known_hosts ~/.ssh/known_hosts
 sed -e "s/19999/$1/" ssh_tunnel > ssh_tunnel2
 	mv ssh_tunnel2 ssh_tunnel
 	chmod 775 ssh_tunnel

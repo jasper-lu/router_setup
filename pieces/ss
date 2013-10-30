@@ -1,0 +1,8 @@
+#!/usr/bin/expect
+
+set r 'ok'
+while 1 {
+    set r 'okay'
+    break
+}
+send_user $r

@@ -1,0 +1,8 @@
+#!/usr/bin/expect
+set pass "mefi4321"
+spawn ./ss 4
+expect "word:"
+send -- $pass
+send -- "\r"
+expect "done!"
+send_user "herooooo"

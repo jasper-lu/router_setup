@@ -6,17 +6,20 @@ spawn telnet 192.168.1.1
 #uci set wireless.@wifi-iface[0].mode='';
 #uci commit;
 #uci set wireless.@wifi-iface[''].ssid=''\r" 
+
+#configures the router propoerties. Changes lan address, turns radio on, turns off SSID...
 send "uci set network.lan.ipaddr=192.168.5.1
 uci set wireless.radio0.disabled=0
 uci set wireless.@wifi-iface\\\[0\\].ssid=''
 uci set wireless.@wifi-iface\\\[0\\].mode=''
 wifi detect > /etc/config/wireless\r"
 
+#Has user enter password to change it
 while 1 {
-
     send "passwd\r"
     expect "assword:"
 
+    #enter password
     stty -echo
     expect_user -re "(.*)\n"
     set password $expect_out(1,string)
@@ -26,13 +29,15 @@ while 1 {
 
     expect "assword:"
 
+    #confirm password
     stty -echo
     expect_user -re "(.*)\n"
     set cpassword $expect_out(1,string)
     stty echo
 
     send -- "$cpassword\r\r"
-
+    
+    #if it works, continue. If not, restart loop
     expect {
 	"changed by root" {break}
 	"unchanged" {}
@@ -40,10 +45,12 @@ while 1 {
 }
 
 
+#commits and reboots to save changes
 send "uci commit
 reboot
 exit\r"
 
+#gets the port number to set up the reverse ssh_tunnel
 send_user "next step"
 expect eof
 send_user "What port number are you using?
@@ -51,6 +58,7 @@ send_user "What port number are you using?
 expect_user -re "(.*)\n"
 set port $expect_out(1,string)
 
+#loop to wait for the router to reboot
 while 1 {
 spawn ssh root@192.168.5.1
     expect {
@@ -61,6 +69,7 @@ spawn ssh root@192.168.5.1
     }
 }
 
+#fire and forget
 spawn ./pieces/config $port
 while 1 {
     expect {
